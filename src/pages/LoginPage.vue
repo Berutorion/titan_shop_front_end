@@ -35,7 +35,7 @@
     top: 38.02px;
     left: 26.5px;
     border-radius: 50%;
-    background-color: var(--white);
+    background-color: #fff;
     width: 7px;
     height: 6.49px;
   }
@@ -44,7 +44,7 @@
     top: 38.02px;
     left: 43.5px;
     border-radius: 50%;
-    background-color: var(--white);
+    background-color: #fff;
     width: 7px;
     height: 6.49px;
   }
@@ -53,7 +53,7 @@
     top: 0px;
     left: 59.5px;
     border-radius: 50%;
-    background-color: var(--white);
+    background-color: #fff;
     width: 7px;
     height: 6.49px;
   }
@@ -74,7 +74,7 @@
   .wlcome-to-win {
     position: relative;
     font-size: 32px;
-    font-family: var(--font-roboto);
+    font-family: Roboto;
     display: inline-block;
     width: 400px;
     height: 31.53px;
@@ -95,7 +95,7 @@
     height: 1024px;
     display: flex;
     flex-direction: column;
-    padding: var(--padding-3xs);
+    padding: 10px;
     box-sizing: border-box;
     align-items: center;
     justify-content: center;
@@ -106,7 +106,7 @@
     background-position: top;
     text-align: left;
     font-size: 19px;
-    color: var(--white);
-    font-family: var(--font-century-gothic);
+    color: #fff;
+    font-family: "Century Gothic";
   }
 </style>

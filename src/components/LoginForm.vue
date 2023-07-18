@@ -83,9 +83,9 @@
     align-items: flex-start;
     justify-content: flex-start;
     text-align: center;
-    font-size: var(--font-size-xl);
-    color: var(--color-gray);
-    font-family: var(--font-roboto);
+    font-size: 20px;
+    color: #899095;
+    font-family: Roboto;
   }
   .label3 {
     position: relative;
@@ -112,7 +112,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    gap: var(--gap-45xl);
+    gap: 64px;
   }
   .left-icon2 {
     position: relative;
@@ -127,8 +127,8 @@
   }
   .input-labels7 {
     border: none;
-    font-family: var(--public-sans-text-md-regular);
-    font-size: var(--public-sans-text-md-regular-size);
+    font-family: "Public Sans";
+    font-size: 16px;
     background-color: transparent;
     flex: 1;
     display: flex;
@@ -144,14 +144,14 @@
   }
   .input-field-base1 {
     align-self: stretch;
-    border-radius: var(--br-9xs);
-    border: 1.5px solid var(--light-neutrals-400);
+    border-radius: 4px;
+    border: 1.5px solid #cbd5e1;
     display: flex;
     flex-direction: row;
-    padding: var(--padding-3xs) var(--padding-xs);
+    padding: 10px 12px;
     align-items: center;
     justify-content: flex-start;
-    gap: var(--gap-5xs);
+    gap: 8px;
   }
   .input-labels8 {
     align-self: stretch;
@@ -159,7 +159,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    color: var(--light-type-medium);
+    color: #64748b;
   }
   .email-input {
     width: 342px;
@@ -167,7 +167,7 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    gap: var(--gap-9xs);
+    gap: 4px;
   }
   .left-icon3 {
     position: relative;
@@ -199,35 +199,35 @@
   }
   .input-field-base2 {
     align-self: stretch;
-    border-radius: var(--br-9xs);
-    border: 1.5px solid var(--light-neutrals-400);
+    border-radius: 4px;
+    border: 1.5px solid #cbd5e1;
     display: flex;
     flex-direction: row;
-    padding: var(--padding-3xs) var(--padding-xs);
+    padding: 10px 12px;
     align-items: center;
     justify-content: flex-start;
-    gap: var(--gap-5xs);
+    gap: 8px;
   }
   .text2 {
     flex: 1;
     position: relative;
-    font-size: var(--text-sm-semibold-size);
+    font-size: 14px;
     line-height: 20px;
     font-weight: 600;
-    font-family: var(--text-sm-semibold);
-    color: var(--white);
+    font-family: Inter;
+    color: #fff;
     text-align: center;
   }
   .button-base1 {
     flex: 1;
-    border-radius: var(--br-5xs);
-    background-color: var(--color-lightseagreen);
-    box-shadow: var(--shadow-xs);
-    border: 1px solid var(--color-lightseagreen);
+    border-radius: 8px;
+    background-color: #15adb7;
+    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+    border: 1px solid #15adb7;
     overflow: hidden;
     display: flex;
     flex-direction: row;
-    padding: var(--padding-3xs) var(--padding-base);
+    padding: 10px 16px;
     align-items: center;
     justify-content: center;
   }
@@ -236,7 +236,7 @@
     border: none;
     padding: 0;
     background-color: transparent;
-    border-radius: var(--br-5xs);
+    border-radius: 8px;
     width: 342px;
     display: flex;
     flex-direction: row;
@@ -244,21 +244,21 @@
     justify-content: flex-start;
   }
   .form-title-parent {
-    border-radius: var(--br-4xl);
-    background-color: var(--white);
+    border-radius: 23px;
+    background-color: #fff;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset;
     width: 372px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    padding: var(--padding-xl) var(--padding-3xs);
+    padding: 20px 10px;
     box-sizing: border-box;
     align-items: center;
     justify-content: center;
-    gap: var(--gap-31xl);
+    gap: 50px;
     text-align: left;
-    font-size: var(--text-sm-semibold-size);
-    color: var(--light-type-high);
-    font-family: var(--public-sans-text-md-regular);
+    font-size: 14px;
+    color: #070a13;
+    font-family: "Public Sans";
   }
 </style>
