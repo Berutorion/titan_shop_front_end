@@ -3,6 +3,9 @@ import { createRouter, createWebHistory } from "vue-router";
 import App from "./App.vue";
 
 import LoginPage from "./pages/LoginPage.vue";
+import ProductionMamagementPage from "./pages/ProductionMamagementPage.vue";
+import ProductDetailPage from "./pages/ProductDetailPage.vue";
+import MainPage from "./pages/MainPage.vue";
 import "./global.css";
 
 const routes = [
@@ -10,6 +13,21 @@ const routes = [
     path: "/",
     name: "LoginPage",
     component: LoginPage,
+  },
+  {
+    path: "/productionmamagementpage",
+    name: "ProductionMamagementPage",
+    component: ProductionMamagementPage,
+  },
+  {
+    path: "/productdetailpage",
+    name: "ProductDetailPage",
+    component: ProductDetailPage,
+  },
+  {
+    path: "/mainpage",
+    name: "MainPage",
+    component: MainPage,
   },
 ];
 

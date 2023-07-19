@@ -4,45 +4,45 @@
       <b class="sign-in">Sign in</b>
     </div>
     <div class="email-input">
-      <div class="top-content1">
-        <div class="input-labels5">
-          <div class="label3">Label</div>
+      <div class="top-content4">
+        <div class="input-labels18">
+          <div class="label9">Label</div>
         </div>
-        <div class="input-labels6">
-          <div class="label3">Label</div>
+        <div class="input-labels19">
+          <div class="label9">Label</div>
         </div>
       </div>
-      <div class="input-field-base1">
-        <img class="left-icon2" alt="" src="/left-icon2.svg" />
-        <img class="processorvisa-icon2" alt="" src="/processorvisa.svg" />
+      <div class="input-field-base4">
+        <img class="left-icon8" alt="" src="/left-icon2.svg" />
+        <img class="processorvisa-icon6" alt="" src="/processorvisa.svg" />
         <input
-          class="input-labels7"
+          class="input-labels20"
           type="email"
           placeholder="Email Adress"
           maxlength
           minlength
           required
         />
-        <img class="right-icon2" alt="" src="/right-icon1.svg" />
+        <img class="right-icon8" alt="" src="/right-icon1.svg" />
       </div>
-      <div class="input-labels8">
-        <div class="label3">Description</div>
+      <div class="input-labels21">
+        <div class="label9">Description</div>
       </div>
     </div>
     <div class="email-input">
-      <div class="top-content1">
-        <div class="input-labels5">
-          <div class="label3">Label</div>
+      <div class="top-content4">
+        <div class="input-labels18">
+          <div class="label9">Label</div>
         </div>
-        <div class="input-labels6">
-          <div class="label3">Label</div>
+        <div class="input-labels19">
+          <div class="label9">Label</div>
         </div>
       </div>
-      <div class="input-field-base2">
-        <img class="left-icon3" alt="" src="/left-icon3.svg" />
-        <img class="processorvisa-icon2" alt="" src="/processorvisa.svg" />
+      <div class="input-field-base5">
+        <img class="left-icon9" alt="" src="/left-icon3.svg" />
+        <img class="processorvisa-icon6" alt="" src="/processorvisa.svg" />
         <input
-          class="input-labels7"
+          class="input-labels20"
           type="password"
           placeholder="Password"
           maxlength
@@ -53,13 +53,13 @@
           <img class="icon" alt="" src="/icon.svg" />
         </button>
       </div>
-      <div class="input-labels8">
-        <div class="label3">Description</div>
+      <div class="input-labels21">
+        <div class="label9">Description</div>
       </div>
     </div>
-    <button class="button">
-      <div class="button-base1">
-        <div class="text2">Login</div>
+    <button class="button1">
+      <div class="button-base4">
+        <div class="text6">Login</div>
       </div>
     </button>
   </div>
@@ -87,26 +87,26 @@
     color: #899095;
     font-family: Roboto;
   }
-  .label3 {
+  .label9 {
     position: relative;
     line-height: 20px;
     font-weight: 500;
   }
-  .input-labels5 {
+  .input-labels18 {
     flex: 1;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
   }
-  .input-labels6 {
+  .input-labels19 {
     display: none;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
     text-align: right;
   }
-  .top-content1 {
+  .top-content4 {
     align-self: stretch;
     display: none;
     flex-direction: row;
@@ -114,18 +114,18 @@
     justify-content: flex-start;
     gap: 64px;
   }
-  .left-icon2 {
+  .left-icon8 {
     position: relative;
     width: 25.04px;
     height: 24px;
   }
-  .processorvisa-icon2 {
+  .processorvisa-icon6 {
     position: relative;
     width: 35px;
     height: 24px;
     display: none;
   }
-  .input-labels7 {
+  .input-labels20 {
     border: none;
     font-family: "Public Sans";
     font-size: 16px;
@@ -136,13 +136,13 @@
     align-items: center;
     justify-content: flex-start;
   }
-  .right-icon2 {
+  .right-icon8 {
     position: relative;
     width: 24px;
     height: 24px;
     display: none;
   }
-  .input-field-base1 {
+  .input-field-base4 {
     align-self: stretch;
     border-radius: 4px;
     border: 1.5px solid #cbd5e1;
@@ -153,7 +153,7 @@
     justify-content: flex-start;
     gap: 8px;
   }
-  .input-labels8 {
+  .input-labels21 {
     align-self: stretch;
     display: none;
     flex-direction: row;
@@ -169,7 +169,7 @@
     justify-content: flex-start;
     gap: 4px;
   }
-  .left-icon3 {
+  .left-icon9 {
     position: relative;
     width: 24px;
     height: 24px;
@@ -197,7 +197,7 @@
     width: 24px;
     height: 24px;
   }
-  .input-field-base2 {
+  .input-field-base5 {
     align-self: stretch;
     border-radius: 4px;
     border: 1.5px solid #cbd5e1;
@@ -208,7 +208,7 @@
     justify-content: flex-start;
     gap: 8px;
   }
-  .text2 {
+  .text6 {
     flex: 1;
     position: relative;
     font-size: 14px;
@@ -218,7 +218,7 @@
     color: #fff;
     text-align: center;
   }
-  .button-base1 {
+  .button-base4 {
     flex: 1;
     border-radius: 8px;
     background-color: #15adb7;
@@ -231,7 +231,7 @@
     align-items: center;
     justify-content: center;
   }
-  .button {
+  .button1 {
     cursor: pointer;
     border: none;
     padding: 0;
