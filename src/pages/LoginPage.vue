@@ -8,7 +8,7 @@
         <div class="ellipse-div" />
         <div class="storepk">store.pk</div>
       </div>
-      <div class="wlcome-to-win">Wlcome to Win Store.com</div>
+      <div class="welcome-to-win">Welcome to Win Store.com</div>
     </div>
     <LoginForm />
   </div>

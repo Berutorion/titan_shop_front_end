@@ -1,3 +1,25 @@
+<script setup>
+  import { reactive } from "vue";
+  import userAPI from "../api/user";
+  import { useRouter } from "vue-router";
+
+  const loginData = reactive({
+    account: "",
+    password: "",
+  });
+
+  const router = useRouter();
+
+ async function login() {
+  try {
+    await userAPI.login(loginData);
+    router.push("/mainpage"); 
+  } catch (error) {
+    console.log(error);
+  }
+   
+  }
+</script>
 <template>
   <div class="form-title-parent">
     <div class="form-title">
@@ -18,7 +40,8 @@
         <input
           class="input-labels20"
           type="email"
-          placeholder="Email Adress"
+          placeholder="Email Address"
+          v-model.trim="loginData.account"
           maxlength
           minlength
           required
@@ -45,6 +68,7 @@
           class="input-labels20"
           type="password"
           placeholder="Password"
+          v-model.trim="loginData.password"
           maxlength
           minlength
           required
@@ -57,20 +81,14 @@
         <div class="label9">Description</div>
       </div>
     </div>
-    <button class="button1">
+    <button class="button1" @click="login">
       <div class="button-base4">
         <div class="text6">Login</div>
       </div>
     </button>
   </div>
 </template>
-<script>
-  import { defineComponent, ref } from "vue";
 
-  export default defineComponent({
-    name: "LoginForm",
-  });
-</script>
 <style scoped>
   .sign-in {
     flex: 1;
