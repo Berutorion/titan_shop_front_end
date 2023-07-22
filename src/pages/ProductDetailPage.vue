@@ -1,3 +1,36 @@
+<script setup>
+  import { ref, onMounted } from "vue";
+  import Navigation1 from "../components/Navigation1.vue";
+  import Footers from "../components/Footers.vue";
+  import productAPI from "../api/product";
+  import { useRoute, useRouter } from "vue-router";
+  const route = useRoute();
+  const productId = ref(route.params.id);
+  const product = ref({});
+  const role = ref(localStorage.getItem("userRole"));
+  const isBuyer = ref(false);
+  
+  onMounted(async () => {
+    if (role.value === "buyer") {
+      isBuyer.value = true;
+    }
+    try {
+      console.log("prodcutID", productId.value);
+    const response = await productAPI.getProductById(productId.value);
+    product.value = response;
+    console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+    
+  });
+
+  function priceFormat(price) {
+    return price?.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+
+</script>
 <template>
   <div class="productdetailpage">
     <Navigation1 />
@@ -7,28 +40,26 @@
       </div>
       <div class="detailcontainer">
         <div class="detail">
-          <div class="havic-hv-g-92">Havic HV G-92 Gamepad</div>
-          <div class="div13">$192.00</div>
+          <div class="havic-hv-g-92">{{ product?.name }}</div>
+          <div class="div13">{{"$ " + priceFormat(product?.price)}}</div>
           <div class="playstation-5-controller">
-            PlayStation 5 Controller Skin High quality vinyl with air channel
-            adhesive for easy bubble free install & mess free removal Pressure
-            sensitive.
+            {{ product?.description  }}
           </div>
           <img class="underline-icon1" alt="" src="/underline1.svg" />
         </div>
         <div class="buttongroup2">
-          <div class="picker">
+          <div class="picker" v-if="isBuyer">
             <button class="left-icon6">
               <img class="maths-minus-m2" alt="" src="/maths--minus-m1.svg" />
             </button>
             <div class="time1">
-              <div class="value1">10</div>
+              <div class="value1">{{product?.stock}}</div>
             </div>
             <button class="right-icon6">
               <img class="maths-minus-m2" alt="" src="/maths--plus-m1.svg" />
             </button>
           </div>
-          <div class="button">
+          <div class="button" v-if="isBuyer">
             <button class="button-base3">
               <div class="text5">Add to Cart</div>
             </button>
@@ -39,16 +70,7 @@
     <Footers />
   </div>
 </template>
-<script>
-  import { defineComponent, ref } from "vue";
-  import Navigation1 from "../components/Navigation1.vue";
-  import Footers from "../components/Footers.vue";
 
-  export default defineComponent({
-    name: "ProductDetailPage",
-    components: { Navigation1, Footers },
-  });
-</script>
 <style scoped>
   .image-63-icon {
     position: relative;
@@ -203,17 +225,19 @@
   }
   .product-detail {
     align-self: stretch;
+    flex: auto;
     display: flex;
     flex-direction: row;
     padding: 5px 0px;
     align-items: flex-start;
-    justify-content: flex-start;
+    justify-content: center;
     gap: 70px;
   }
   .productdetailpage {
     position: relative;
     background-color: #fff;
     width: 100%;
+    height: 100dvh;
     overflow: hidden;
     display: flex;
     flex-direction: column;

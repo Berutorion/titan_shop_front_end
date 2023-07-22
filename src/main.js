@@ -3,29 +3,29 @@ import { createRouter, createWebHistory } from "vue-router";
 import App from "./App.vue";
 
 import LoginPage from "./pages/LoginPage.vue";
-import ProductionMamagementPage from "./pages/ProductionMamagementPage.vue";
+import ProductManagementPage from "./pages/ProductManagementPage.vue";
 import ProductDetailPage from "./pages/ProductDetailPage.vue";
 import MainPage from "./pages/MainPage.vue";
 import "./global.css";
 
 const routes = [
   {
-    path: "/",
+    path: "/login",
     name: "LoginPage",
     component: LoginPage,
   },
   {
-    path: "/productionmamagementpage",
-    name: "ProductionMamagementPage",
-    component: ProductionMamagementPage,
+    path: "/productManagement",
+    name: "ProductManagementPage",
+    component: ProductManagementPage,
   },
   {
-    path: "/productdetailpage",
+    path: "/productDetail/:id",
     name: "ProductDetailPage",
     component: ProductDetailPage,
   },
   {
-    path: "/mainpage",
+    path: "/",
     name: "MainPage",
     component: MainPage,
   },

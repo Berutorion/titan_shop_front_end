@@ -1,19 +1,18 @@
 <script setup>
   import { reactive } from "vue";
   import userAPI from "../api/user";
-  import { useRouter } from "vue-router";
+  import router from "../main";
 
   const loginData = reactive({
     account: "",
     password: "",
   });
 
-  const router = useRouter();
 
  async function login() {
   try {
     await userAPI.login(loginData);
-    router.push("/mainpage"); 
+    router.push({name: "MainPage"}); 
   } catch (error) {
     console.log(error);
   }

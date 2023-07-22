@@ -1,48 +1,69 @@
+<script setup>
+  import { defineComponent, ref ,defineProps, computed} from "vue";
+  import router from "../main";
+  const containerCursor = ref("pointer");
+  const props = defineProps({
+    productName: { type: String , default: "Product Name"},
+    productImage: { type: String, default: "/produuctimage1@2x.png"},
+    productPrice: { type: String, default: "0" },
+    productId: { type: Number, default: "0" },
+  });
+  const role = ref(localStorage.getItem("userRole"));
+  const isBuyer = ref(false);
+
+  if (role.value === "buyer") {
+    isBuyer.value = true;
+  }
+
+  computed(() => {
+    return {
+      containerStyle() {
+        return {
+          cursor: containerCursor,
+        };
+      },
+    };
+  });
+
+  function onContainerClick() {
+    const productId = props.productId;
+    console.log("Product ID", productId);
+   router.push({ name: "ProductDetailPage", params: { id: productId } });
+  }
+
+  function priceFormat(price) {
+    return price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+  function addToCart() {
+    console.log("Add to cart");
+  }
+ 
+</script>
 <template>
   <div class="product-card1">
     <div class="container1" @click="onContainerClick" :style="containerStyle">
       <div class="productname1">{{productName}}</div>
-      <img class="produuctimage-icon1" alt="" :src="produuctImage" />
+      <img class="productImage-icon1" alt="" :src="productImage" />
       <div class="productprice5">
-        <div class="productname1">{{productPrice}}</div>
+        <div class="productname1">{{"$ " + priceFormat(productPrice)}}</div>
       </div>
     </div>
-    <button class="cartbutton5">
+    <button class="cartbutton5" @click="addToCart" v-if="isBuyer">
       <div class="button-base5">
         <div class="text7">Add to Cart</div>
       </div>
     </button>
   </div>
 </template>
-<script>
-  import { defineComponent, ref } from "vue";
 
-  export default defineComponent({
-    name: "ProductCards",
-    props: {
-      productName: { type: String },
-      produuctImage: { type: String, default: "/produuctimage1@2x.png" },
-      productPrice: { type: String, default: "0" },
-      containerCursor: { type: String },
-      onContainerClick: { type: Function },
-    },
-    computed: {
-      containerStyle() {
-        return {
-          cursor: this.containerCursor,
-        };
-      },
-    },
-  });
-</script>
 <style scoped>
   .productname1 {
     position: relative;
   }
-  .produuctimage-icon1 {
+  .productImage-icon1 {
     position: relative;
-    width: 158px;
-    height: 129px;
+    width: 70%;
+    height: 50%;
     object-fit: cover;
   }
   .productprice5 {

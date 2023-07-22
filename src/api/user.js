@@ -4,7 +4,7 @@ const user = {
     login: async (params) => {
         const response = await Service.API.call('post', '/login', {account: params.account, password: params.password});
         localStorage.setItem('token', response?.token?response.token:'');
-        localStorage.setItem('userRole', response?.userRole?response.userRole:'');
+        localStorage.setItem('userRole', response?.role?response.role:'');
         return response;
     },
     register: async (email, password) => {

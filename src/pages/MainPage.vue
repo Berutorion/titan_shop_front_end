@@ -1,137 +1,40 @@
+
+<script setup>
+  import { ref , onMounted} from "vue";
+  import ProductCards from "../components/ProductCards.vue";
+  import Pagination from "../components/Pagination.vue";
+  import Footers from "../components/Footers.vue";
+  import productAPI from "../api/product";
+  import Navigation1 from "../components/Navigation1.vue";
+
+  const productList = ref([]);
+  onMounted(async () => {
+    try {
+      const response = await productAPI.getProducts();
+      productList.value = response;
+    } catch (error) {
+      console.log(error);
+    }
+   
+  });
+
+</script>
 <template>
   <div class="mainpage">
-    <div class="navigation2">
-      <div class="logo3">
-        <div class="logo-child9" />
-        <img class="logo-child10" alt="" src="/vector-15.svg" />
-        <div class="storepk4">store.pk</div>
-        <div class="logo-child9" />
-        <div class="logo-child9" />
-      </div>
-      <div class="input-field2">
-        <div class="top-content3">
-          <div class="input-labels14">
-            <div class="label7">Label</div>
-          </div>
-          <div class="input-labels15">
-            <div class="label7">Label</div>
-          </div>
-        </div>
-        <div class="input-field-base3">
-          <img class="left-icon7" alt="" src="/left-icon8.svg" />
-          <img class="processorvisa-icon5" alt="" src="/processorvisa3.svg" />
-          <input
-            class="input-labels16"
-            type="text"
-            placeholder="Search"
-            maxlength
-            minlength
-          />
-          <button class="right-icon7">
-            <img class="vector-icon3" alt="" src="/vector14.svg" />
-            <img class="vector-icon4" alt="" src="/vector15.svg" />
-          </button>
-        </div>
-        <div class="input-labels17">
-          <div class="label7">Description</div>
-        </div>
-      </div>
-      <div class="buttongroup3">
-        <button class="userbutton1">
-          <img class="vector-icon5" alt="" src="/vector.svg" />
-          <img class="vector-icon6" alt="" src="/vector1.svg" />
-        </button>
-        <img class="heart-icon2" alt="" src="/heart3.svg" />
-        <button class="cartbutton3">
-          <div class="shopping-cart-frame">
-            <img class="shopping-cart-icon2" alt="" src="/shoppingcart1.svg" />
-          </div>
-          <div class="cart2">Cart</div>
-        </button>
-      </div>
-    </div>
+     <Navigation1/>
     <div class="productcontainer">
       <ProductCards
-        productName="Haier HSU-12HFMAC.."
-        produuctImage="/produuctimage1@2x.png"
-        productPrice="RS 56.000"
-        :onContainerClick="onContainerClick"
-      /><ProductCards
-        productName="Haier HSU-12HFMAC.."
-        produuctImage="/produuctimage1@2x.png"
-        productPrice="RS 56.000"
-        containerCursor="unset"
-      /><ProductCards
-        productName="Haier HSU-12HFMAC.."
-        produuctImage="/produuctimage1@2x.png"
-        productPrice="RS 56.000"
-        containerCursor="unset"
-      /><ProductCards
-        productName="Haier HSU-12HFMAC.."
-        produuctImage="/produuctimage1@2x.png"
-        productPrice="RS 56.000"
-        containerCursor="unset"
-      /><ProductCards
-        productName="Haier HSU-12HFMAC.."
-        produuctImage="/produuctimage1@2x.png"
-        productPrice="RS 56.000"
-        containerCursor="unset"
-      /><ProductCards
-        productName="Haier HSU-12HFMAC.."
-        produuctImage="/produuctimage1@2x.png"
-        productPrice="RS 56.000"
-        containerCursor="unset"
-      /><ProductCards
-        productName="Haier HSU-12HFMAC.."
-        produuctImage="/produuctimage1@2x.png"
-        productPrice="RS 56.000"
-        containerCursor="unset"
-      /><ProductCards
-        productName="Haier HSU-12HFMAC.."
-        produuctImage="/produuctimage1@2x.png"
-        productPrice="RS 56.000"
-        containerCursor="unset"
-      /><ProductCards
-        productName="Haier HSU-12HFMAC.."
-        produuctImage="/produuctimage1@2x.png"
-        productPrice="RS 56.000"
-        containerCursor="unset"
-      /><ProductCards
-        productName="Haier HSU-12HFMAC.."
-        produuctImage="/produuctimage1@2x.png"
-        productPrice="RS 56.000"
-        containerCursor="unset"
-      /><ProductCards
-        productName="Haier HSU-12HFMAC.."
-        produuctImage="/produuctimage1@2x.png"
-        productPrice="RS 56.000"
-        containerCursor="unset"
-      /><ProductCards
-        productName="Haier HSU-12HFMAC.."
-        produuctImage="/produuctimage1@2x.png"
-        productPrice="RS 56.000"
-        containerCursor="unset"
+        v-for="product in productList"
+        :productId="product.id"
+        :productName=  "product.name"
+        :productImage= "product.image"
+        :productPrice= "product.price"
       />
     </div>
     <Pagination /><Footers />
   </div>
 </template>
-<script>
-  import { defineComponent, ref } from "vue";
-  import ProductCards from "../components/ProductCards.vue";
-  import Pagination from "../components/Pagination.vue";
-  import Footers from "../components/Footers.vue";
 
-  export default defineComponent({
-    name: "MainPage",
-    components: { ProductCards, Pagination, Footers },
-    methods: {
-      onContainerClick() {
-        this.$router.push("/productdetailpage");
-      },
-    },
-  });
-</script>
 <style scoped>
   .logo-child9 {
     position: relative;
@@ -371,6 +274,7 @@
   }
   .productcontainer {
     align-self: stretch;
+    flex: auto;
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -384,7 +288,7 @@
     position: relative;
     background-color: #fff;
     width: 100%;
-    height: 812px;
+    height: 100dvh;
     overflow: hidden;
     display: flex;
     flex-direction: column;
