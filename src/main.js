@@ -5,6 +5,7 @@ import App from "./App.vue";
 import LoginPage from "./pages/LoginPage.vue";
 import ProductManagementPage from "./pages/ProductManagementPage.vue";
 import ProductDetailPage from "./pages/ProductDetailPage.vue";
+import AddNewProductPage from "./pages/AddNewProductPage.vue";
 import MainPage from "./pages/MainPage.vue";
 import "./global.css";
 
@@ -23,6 +24,12 @@ const routes = [
       requiresAuth: true,
     }
   },
+  {
+    path: "/addNewProduct",
+    name: "AddNewProductPage",
+    component: AddNewProductPage,
+  },
+
   {
     path: "/productDetail/:id",
     name: "ProductDetailPage",

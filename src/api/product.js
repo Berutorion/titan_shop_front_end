@@ -24,6 +24,11 @@ const product = {
     deleteProductById: async (id) => {
         const response = await Service.API.call('delete', `/product/${id}`);
         return response;
+    },
+    addNewProduct: async (data) => {
+        const userId = localStorage.getItem('userId');
+      const response = await Service.API.call('post', '/product', {seller:userId,...data});
+        return response;
     }
 }
 

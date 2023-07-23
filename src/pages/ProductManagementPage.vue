@@ -1,10 +1,11 @@
 
 <script setup>
-  import { defineComponent, ref , onMounted} from "vue";
+  import {  ref , onMounted} from "vue";
   import ProductManageItems from "../components/ProductManageItems.vue";
   import Footers from "../components/Footers.vue";
   import Navigation1 from "../components/Navigation1.vue";
   import productAPI from "../api/product";
+  import router from "../main";
   const productList = ref([]);
   const userId = ref(localStorage.getItem("userId"));
 
@@ -18,6 +19,10 @@
     }
   });
 
+  const addNewProduct = () => {
+    router.push("/addNewProduct");
+  };
+
 
 </script>
 <template>
@@ -26,7 +31,7 @@
     <div class="production-manager">
       <div class="title1">
         <div class="production-mamagement">Production Mamagement</div>
-        <button class="newbutton">
+        <button class="newbutton" @click="addNewProduct">
           <img class="plusicon" alt="" src="/plusicon.svg" />
           <div class="add-new-production">add new production</div>
         </button>
