@@ -14,7 +14,7 @@
   function onLogOutClick() {
     localStorage.removeItem("token");
     localStorage.removeItem("userRole");
-    router.push({ path: "/redirect"});
+    window.location.reload();
   }
 
   function onLoginClick() {

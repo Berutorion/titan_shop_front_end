@@ -6,12 +6,13 @@
   import Navigation1 from "../components/Navigation1.vue";
   import productAPI from "../api/product";
   const productList = ref([]);
-  const user = ref(JSON.parse(localStorage.getItem("user")));
+  const userId = ref(localStorage.getItem("userId"));
 
   onMounted(async () => {
     try {
-    const response = await productAPI.getProductById(user.id);
-    productList.value = response.data;
+    const response = await productAPI.getProductsBySellerId(userId.value);
+    productList.value = response;
+    console.log(productList.value);
     } catch (error) {
       console.log(error);
     }
@@ -39,10 +40,12 @@
         <div class="inventory">inventory</div>
       </div>
       <ProductManageItems
-        productImage="/defaultImage.png"
-        productionName="production name"
-        productPrice="$650"
-        productAmout="10"
+        v-for="product in productList"
+        :id="product.id"
+        :productImage="product.productImage"
+        :productionName="product.name"
+        :productPrice="product.price"
+        :productAmout="product.stock"
       />
     </div>
     <Footers />
@@ -295,6 +298,7 @@
     justify-content: space-between;
   }
   .tabletitle-child {
+    flex: 1;
     position: relative;
     width: 100px;
     height: 26px;
@@ -302,6 +306,7 @@
     flex-shrink: 0;
   }
   .production {
+    flex:1;
     position: relative;
     font-weight: 500;
     display: inline-block;
@@ -309,6 +314,7 @@
     flex-shrink: 0;
   }
   .price {
+    
     position: relative;
     font-weight: 500;
     display: inline-block;
@@ -316,12 +322,14 @@
     flex-shrink: 0;
   }
   .price-wrapper {
+    flex:1;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
   }
   .inventory {
+    flex:1;
     position: relative;
     font-weight: 500;
     display: inline-block;

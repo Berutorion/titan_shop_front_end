@@ -193,7 +193,7 @@
   }
   .pagination-wrapper {
     align-self: stretch;
-    overflow: hidden;
+    /* overflow: hidden; */
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -1,3 +1,27 @@
+<script setup>
+  import {  ref, defineProps } from "vue";
+  import format from "../helpers/format";
+  import productAPI from "../api/product";
+  const props = defineProps({
+    id: { type: Number, default: 0 },
+    productImage: { type: String, default: "/defaultImage.png" },
+    productionName: { type: String, default: "production name" },
+    productPrice: { type: String, default: "$0" },
+    productAmout: { type: Number, default: 0 },
+  });
+  
+
+    // delete product
+    async function onDeleteClick() {
+      try {
+       await productAPI.deleteProductById(props.id);
+       alert("Delete product successfully");
+       window.location.reload();
+      } catch (error) {
+        console.log(error);
+      }
+    }
+</script>
 <template>
   <div class="productmanageitem3">
     <div class="button-group3">
@@ -7,7 +31,7 @@
         <img class="vector-icon9" alt="" src="/vector4.svg" />
         <img class="vector-icon10" alt="" src="/vector5.svg" />
       </button>
-      <button class="icon-trash3">
+      <button class="icon-trash3" @click="onDeleteClick">
         <img class="vector-icon11" alt="" src="/vector6.svg" />
         <img class="vector-icon12" alt="" src="/vector7.svg" />
         <img class="vector-icon13" alt="" src="/vector8.svg" />
@@ -18,23 +42,11 @@
       <img class="g92-2-500x500-1-icon3" alt="" :src="productImage" />
       <div class="production-name3">{{productionName}}</div>
     </div>
-    <div class="productprice4">{{productPrice}}</div>
+    <div class="productprice4">{{"$ " + format.priceFormat(productPrice)}}</div>
     <div class="production-name3">{{productAmout}}</div>
   </div>
 </template>
-<script>
-  import { defineComponent, ref } from "vue";
 
-  export default defineComponent({
-    name: "ProductManageItems",
-    props: {
-      productImage: { type: String, default: "/defaultImage.png" },
-      productionName: { type: String, default: "production name" },
-      productPrice: { type: String, default: "$0" },
-      productAmout: { type: String, default: "0" },
-    },
-  });
-</script>
 <style scoped>
   .vector-icon7 {
     position: absolute;
@@ -151,6 +163,7 @@
     height: 20px;
   }
   .button-group3 {
+    flex: 1;
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -166,10 +179,12 @@
     object-fit: cover;
   }
   .production-name3 {
+    flex: 1;
     position: relative;
     font-weight: 500;
   }
   .prouction3 {
+    flex: 1;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -177,6 +192,7 @@
     gap: 10px;
   }
   .productprice4 {
+    flex: 1;
     position: relative;
     line-height: 24px;
   }
