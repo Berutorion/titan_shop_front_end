@@ -11,6 +11,10 @@ const user = {
         const response = await Service.call('post', '/register', { email, password });
         return response;
     },
+    getUserById: async (id) => {
+        const response = await Service.API.call('get', `/user/${id}`);
+        return response;
+    }
 }
 
 export default user;

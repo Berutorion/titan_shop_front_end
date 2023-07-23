@@ -1,46 +1,27 @@
+
+<script setup>
+  import { defineComponent, ref , onMounted} from "vue";
+  import ProductManageItems from "../components/ProductManageItems.vue";
+  import Footers from "../components/Footers.vue";
+  import Navigation1 from "../components/Navigation1.vue";
+  import productAPI from "../api/product";
+  const productList = ref([]);
+  const user = ref(JSON.parse(localStorage.getItem("user")));
+
+  onMounted(async () => {
+    try {
+    const response = await productAPI.getProductById(user.id);
+    productList.value = response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  });
+
+
+</script>
 <template>
   <div class="productionmamagementpage">
-    <div class="navigation1">
-      <button class="logo2" @click="onLogoClick">
-        <div class="logo-child5" />
-        <img class="logo-child6" alt="" src="/vector-13.svg" />
-        <div class="storepk3">store.pk</div>
-        <div class="logo-child5" />
-        <div class="logo-child5" />
-      </button>
-      <div class="input-field1">
-        <div class="top-content2">
-          <div class="input-labels10">
-            <div class="label5">Label</div>
-          </div>
-          <div class="input-labels11">
-            <div class="label5">Label</div>
-          </div>
-        </div>
-        <div class="input-field-base2">
-          <img class="left-icon5" alt="" src="/left-icon6.svg" />
-          <img class="processorvisa-icon4" alt="" src="/processorvisa3.svg" />
-          <input class="input-labels12" type="text" maxlength minlength />
-          <img class="right-icon5" alt="" src="/right-icon3.svg" />
-        </div>
-        <div class="input-labels13">
-          <div class="label5">Description</div>
-        </div>
-      </div>
-      <div class="buttongroup1">
-        <button class="userbutton">
-          <img class="vector-icon1" alt="" src="/vector.svg" />
-          <img class="vector-icon2" alt="" src="/vector1.svg" />
-        </button>
-        <img class="heart-icon1" alt="" src="/heart1.svg" />
-        <button class="cartbutton2">
-          <div class="shopping-cart-container">
-            <img class="right-icon5" alt="" src="/shoppingcart1.svg" />
-          </div>
-          <div class="cart1">Cart</div>
-        </button>
-      </div>
-    </div>
+    <Navigation1 />
     <div class="production-manager">
       <div class="title1">
         <div class="production-mamagement">Production Mamagement</div>
@@ -63,57 +44,11 @@
         productPrice="$650"
         productAmout="10"
       />
-      <div class="productmanageitem1">
-        <div class="button-group1">
-          <img class="icon-page-edit1" alt="" src="/-icon-page-edit1.svg" />
-          <img class="icon-trash1" alt="" src="/-icon-trash1.svg" />
-        </div>
-        <div class="prouction1">
-          <img
-            class="g92-2-500x500-1-icon1"
-            alt=""
-            src="/g922500x500-12@2x.png"
-          />
-          <div class="production-name1">production name</div>
-        </div>
-        <div class="productprice2">$650</div>
-        <div class="production-name1">10</div>
-      </div>
-      <div class="productmanageitem1">
-        <div class="button-group1">
-          <img class="icon-page-edit1" alt="" src="/-icon-page-edit2.svg" />
-          <img class="icon-trash1" alt="" src="/-icon-trash2.svg" />
-        </div>
-        <div class="prouction1">
-          <img
-            class="g92-2-500x500-1-icon1"
-            alt=""
-            src="/g922500x500-13@2x.png"
-          />
-          <div class="production-name1">production name</div>
-        </div>
-        <div class="productprice2">$650</div>
-        <div class="production-name1">10</div>
-      </div>
     </div>
     <Footers />
   </div>
 </template>
-<script>
-  import { defineComponent, ref } from "vue";
-  import ProductManageItems from "../components/ProductManageItems.vue";
-  import Footers from "../components/Footers.vue";
 
-  export default defineComponent({
-    name: "ProductionMamagementPage",
-    components: { ProductManageItems, Footers },
-    methods: {
-      onLogoClick() {
-        this.$router.push("/mainpage");
-      },
-    },
-  });
-</script>
 <style scoped>
   .logo-child5 {
     position: relative;
@@ -454,6 +389,7 @@
     justify-content: space-between;
   }
   .production-manager {
+    flex: 1;
     align-self: stretch;
     border-radius: 10px;
     background-color: #fff;
@@ -474,6 +410,7 @@
     position: relative;
     background-color: #fff;
     width: 100%;
+    height: 100vdh;
     overflow: hidden;
     display: flex;
     flex-direction: column;

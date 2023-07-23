@@ -1,3 +1,32 @@
+<script setup>
+  import { defineComponent, ref } from "vue";
+  import router from "../main";
+  import auth from "../helpers/auth";
+
+  const isSeller = ref(auth.isSeller());
+  const isBuyer = ref(auth.isBuyer());
+  const isLogin = ref(auth.isLogin());
+  const isMainPage = ref(router.currentRoute.value.name === "MainPage");
+  function onLogoClick() {
+    router.push({ name: "MainPage" });
+  }
+
+  function onLogOutClick() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userRole");
+    router.push({ path: "/redirect"});
+  }
+
+  function onLoginClick() {
+    router.push({ name: "LoginPage" });
+  }
+
+  // search
+  const searchInput = ref("");
+  function onSearchClick() {
+    console.log("Search", searchInput.value);
+  }
+</script>
 <template>
   <div class="navigation3">
     <button class="logo4" @click="onLogoClick">
@@ -7,39 +36,29 @@
       <div class="logo-child13" />
       <div class="logo-child13" />
     </button>
-    <div class="input-field3">
-      <div class="top-content6">
-        <div class="input-labels26">
-          <div class="label13">Label</div>
-        </div>
-        <div class="input-labels27">
-          <div class="label13">Label</div>
-        </div>
-      </div>
+    <div class="input-field3" v-if="isMainPage">
       <div class="input-field-base6">
         <img class="left-icon10" alt="" src="/left-icon7.svg" />
         <img class="processorvisa-icon8" alt="" src="/processorvisa4.svg" />
         <input
           class="input-labels28"
           type="text"
+          v-model.trim="searchInput"
           placeholder="Search"
           maxlength
           minlength
         />
-        <button class="right-icon9">
+        <button class="right-icon9" @click="onSearchClick">
           <img class="vector-icon15" alt="" src="/vector10.svg" />
           <img class="vector-icon16" alt="" src="/vector11.svg" />
         </button>
       </div>
-      <div class="input-labels29">
-        <div class="label13">Description</div>
-      </div>
     </div>
     <div class="buttongroup4">
-      <button class="userbutton2">
+      <router-link :to="{name: 'ProductManagementPage'}" class="userbutton2" v-if="isSeller" >
         <img class="vector-icon17" alt="" src="/vector12.svg" />
         <img class="vector-icon18" alt="" src="/vector13.svg" />
-      </button>
+      </router-link>
       <img class="heart-icon3" alt="" src="/heart2.svg" />
       <button class="cartbutton4">
         <div class="frame-div">
@@ -47,21 +66,21 @@
         </div>
         <div class="cart3">Cart</div>
       </button>
+      <button class="cartbutton4" v-if="isLogin" @click="onLogOutClick">
+        <div class="frame-div">
+        </div>
+        <div class="cart3">LogOut</div>
+      </button>
+      <button class="cartbutton4" v-else @click="onLoginClick">
+        <div class="frame-div">
+        </div>
+        <div class="cart3">Login</div>
+      </button>
+
     </div>
   </div>
 </template>
-<script>
-  import { defineComponent, ref } from "vue";
 
-  export default defineComponent({
-    name: "Navigation1",
-    methods: {
-      onLogoClick() {
-        this.$router.push("/mainpage");
-      },
-    },
-  });
-</script>
 <style scoped>
   .logo-child13 {
     position: relative;

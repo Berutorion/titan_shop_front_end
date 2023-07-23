@@ -18,6 +18,10 @@ const routes = [
     path: "/productManagement",
     name: "ProductManagementPage",
     component: ProductManagementPage,
+    addMetaTag: true,
+    meta: {
+      requiresAuth: true,
+    }
   },
   {
     path: "/productDetail/:id",
@@ -29,6 +33,10 @@ const routes = [
     name: "MainPage",
     component: MainPage,
   },
+  {
+    path: "/redirect",
+    redirect: "/",
+  }
 ];
 
 const router = createRouter({
@@ -43,6 +51,14 @@ router.beforeEach((toRoute, fromRoute, next) => {
   if (toRoute?.meta?.description) {
     addMetaTag(toRoute?.meta?.description);
   }
+  // check if route requires authentication and user is not logged in
+  const requiresAuth = toRoute.matched.some((x) => x.meta.requiresAuth);
+  const token = localStorage.getItem("token");
+  const role = localStorage.getItem("userRole");
+  if (requiresAuth && !token && role === "seller") {
+    next("/login");
+    alert("You need to login to access this page");
+  } 
   next();
 });
 

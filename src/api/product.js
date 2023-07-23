@@ -8,6 +8,14 @@ const product = {
     getProductById: async (id) => {
         const response = await Service.API.call('get', `/product/${id}`);
         return response;
+    },
+    getProductsBySellerId: async (id) => {
+        const response = await Service.API.call('get', `/product/seller/${id}`);
+        return response;
+    },
+    getOneProductsBySellerId: async (id,productId) => {
+        const response = await Service.API.call('get', `/product/seller/${id}/${productId}`);
+        return response;
     }
 }
 

@@ -1,6 +1,7 @@
 <script setup>
   import { defineComponent, ref ,defineProps, computed} from "vue";
   import router from "../main";
+  import auth from "../helpers/auth";
   const containerCursor = ref("pointer");
   const props = defineProps({
     productName: { type: String , default: "Product Name"},
@@ -8,20 +9,11 @@
     productPrice: { type: String, default: "0" },
     productId: { type: Number, default: "0" },
   });
-  const role = ref(localStorage.getItem("userRole"));
-  const isBuyer = ref(false);
-
-  if (role.value === "buyer") {
-    isBuyer.value = true;
-  }
-
-  computed(() => {
+  console.log("Auth", auth.isBuyer())
+  const isBuyer = ref(auth.isBuyer());
+  const containerStyle = computed(() => {
     return {
-      containerStyle() {
-        return {
-          cursor: containerCursor,
-        };
-      },
+      cursor: containerCursor.value,
     };
   });
 
