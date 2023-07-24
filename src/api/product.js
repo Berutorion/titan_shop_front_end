@@ -29,6 +29,10 @@ const product = {
         const userId = localStorage.getItem('userId');
       const response = await Service.API.call('post', '/product', {seller:userId,...data});
         return response;
+    },
+    updateProduct: async (id, data) => {
+        const response = await Service.API.call('put', `/product/${id}`, data);
+        return response;
     }
 }
 

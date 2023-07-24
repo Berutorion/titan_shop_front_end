@@ -1,9 +1,10 @@
 <script setup>
-import {  reactive, ref } from "vue";
+import {  onMounted, reactive, ref } from "vue";
 import Navigation1 from "../components/Navigation1.vue";
 import Footers from "../components/Footers.vue";
 import router from "../main";
 import productAPI from "../api/product";
+import { useRoute } from "vue-router";
 const product = reactive({
   name: "",
   price: "",
@@ -11,9 +12,25 @@ const product = reactive({
   description: "",
  // productImage: "",
 });
-const addNewProduct = async() => {
+const initialProduct = ref({});
+const route = useRoute();
+const productId = ref(route.params.id);
+
+onMounted(async () => {
+  try {
+    const response = await productAPI.getProductById(productId.value);
+    initialProduct.value = response;
+    product.name = initialProduct.value.name;
+    product.price = initialProduct.value.price;
+    product.stock = initialProduct.value.stock;
+    product.description = initialProduct.value.description;
+  } catch (error) {
+    console.log(error);
+  }
+});
+const EditProduct = async() => {
  try {
-    await productAPI.addNewProduct(product);
+    await productAPI.updateProduct(productId.value,product);
     router.push({name : "ProductManagementPage"});
  } catch (error) {
     console.log(error);
@@ -94,7 +111,7 @@ const addNewProduct = async() => {
               <div class="label4">Back</div>
             </div>
           </router-link>
-          <button class="button1" @click="addNewProduct">
+          <button class="button1" @click="EditProduct">
             <div class="button-base1">
               <div class="label5">Continue</div>
             </div>

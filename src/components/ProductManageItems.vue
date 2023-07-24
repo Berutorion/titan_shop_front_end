@@ -2,6 +2,7 @@
   import {  ref, defineProps } from "vue";
   import format from "../helpers/format";
   import productAPI from "../api/product";
+import router from "../main";
   const props = defineProps({
     id: { type: Number, default: 0 },
     productImage: { type: String, default: "/defaultImage.png" },
@@ -21,11 +22,20 @@
         console.log(error);
       }
     }
+
+    //Edit product
+    async function onEditClick() {
+      try {
+      router.push({name : "EditProductPage", params : {id : props.id}});
+      } catch (error) {
+        console.log(error);
+      }
+    }
 </script>
 <template>
   <div class="productmanageitem3">
     <div class="button-group3">
-      <button class="icon-page-edit3">
+      <button class="icon-page-edit3" @click="onEditClick">
         <img class="vector-icon7" alt="" src="/vector2.svg" />
         <img class="vector-icon8" alt="" src="/vector3.svg" />
         <img class="vector-icon9" alt="" src="/vector4.svg" />

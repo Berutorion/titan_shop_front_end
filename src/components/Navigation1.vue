@@ -60,7 +60,7 @@
         <img class="vector-icon18" alt="" src="/vector13.svg" />
       </router-link>
       <img class="heart-icon3" alt="" src="/heart2.svg" />
-      <button class="cartbutton4">
+      <button class="cartbutton4" v-if="!isSeller">
         <div class="frame-div">
           <img class="shopping-cart-icon3" alt="" src="/shoppingcart2.svg" />
         </div>

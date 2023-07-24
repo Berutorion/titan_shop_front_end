@@ -6,6 +6,7 @@ import LoginPage from "./pages/LoginPage.vue";
 import ProductManagementPage from "./pages/ProductManagementPage.vue";
 import ProductDetailPage from "./pages/ProductDetailPage.vue";
 import AddNewProductPage from "./pages/AddNewProductPage.vue";
+import EditProductPage from "./pages/EditProductPage.vue";
 import MainPage from "./pages/MainPage.vue";
 import "./global.css";
 
@@ -29,7 +30,11 @@ const routes = [
     name: "AddNewProductPage",
     component: AddNewProductPage,
   },
-
+  {
+    path: "/editProduct/:id",
+    name: "EditProductPage",
+    component: EditProductPage,
+  },
   {
     path: "/productDetail/:id",
     name: "ProductDetailPage",
