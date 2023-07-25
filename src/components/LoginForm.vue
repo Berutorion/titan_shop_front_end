@@ -2,6 +2,7 @@
   import { reactive } from "vue";
   import userAPI from "../api/user";
   import router from "../main";
+  import Alert from "../helpers/Alerts";
 
   const loginData = reactive({
     account: "",
@@ -12,9 +13,10 @@
  async function login() {
   try {
     await userAPI.login(loginData);
+    Alert.toast("登入成功", 'success', 'top-end')
     router.push({name: "MainPage"}); 
   } catch (error) {
-    console.log(error);
+    Alert.toast(error, 'error', 'top-end')
   }
    
   }

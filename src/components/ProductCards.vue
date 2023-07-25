@@ -2,6 +2,9 @@
   import { defineComponent, ref ,defineProps, computed} from "vue";
   import router from "../main";
   import auth from "../helpers/auth";
+  import format from "../helpers/format";
+  import Alert from "../helpers/Alerts";
+  import cartAPI from "../api/cart";
   const containerCursor = ref("pointer");
   const props = defineProps({
     productName: { type: String , default: "Product Name"},
@@ -9,8 +12,8 @@
     productPrice: { type: String, default: "0" },
     productId: { type: Number, default: "0" },
   });
-  console.log("Auth", auth.isBuyer())
-  const isBuyer = ref(auth.isBuyer());
+  const iSeller = ref(auth.isSeller());
+  const productId = props.productId;
   const containerStyle = computed(() => {
     return {
       cursor: containerCursor.value,
@@ -18,16 +21,22 @@
   });
 
   function onContainerClick() {
-    const productId = props.productId;
     console.log("Product ID", productId);
    router.push({ name: "ProductDetailPage", params: { id: productId } });
   }
 
-  function priceFormat(price) {
-    return price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  }
-  function addToCart() {
-    console.log("Add to cart");
+  async function addToCart() {
+    if(auth.isLogin()) {
+      try {
+       const res = await cartAPI.addToCart(productId,1);
+      Alert.toast(res.message, "success", "top-end");
+      } catch (error) {
+       console.log(error); 
+      }
+    } else {
+      Alert.toast("請先登入", "error", "top-end");
+      router.push({ name: "LoginPage" });
+    }
   }
  
 </script>
@@ -37,10 +46,10 @@
       <div class="productname1">{{productName}}</div>
       <img class="productImage-icon1" alt="" :src="productImage" />
       <div class="productprice5">
-        <div class="productname1">{{"$ " + priceFormat(productPrice)}}</div>
+        <div class="productname1">{{"$ " + format.priceFormat(productPrice)}}</div>
       </div>
     </div>
-    <button class="cartbutton5" @click="addToCart" v-if="isBuyer">
+    <button class="cartbutton5" @click="addToCart" v-if="!iSeller">
       <div class="button-base5">
         <div class="text7">Add to Cart</div>
       </div>

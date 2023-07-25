@@ -2,6 +2,7 @@
   import { defineComponent, ref } from "vue";
   import router from "../main";
   import auth from "../helpers/auth";
+  import Alert from "../helpers/Alerts";
 
   const isSeller = ref(auth.isSeller());
   const isBuyer = ref(auth.isBuyer());
@@ -15,6 +16,7 @@
     localStorage.removeItem("token");
     localStorage.removeItem("userRole");
     window.location.reload();
+    // Alert.toast("登出成功", "success", "top-end");
   }
 
   function onLoginClick() {
@@ -60,12 +62,12 @@
         <img class="vector-icon18" alt="" src="/vector13.svg" />
       </router-link>
       <img class="heart-icon3" alt="" src="/heart2.svg" />
-      <button class="cartbutton4" v-if="!isSeller">
+      <router-link :to="{name: 'CartPage'}" class="cartbutton4" v-if="!isSeller">
         <div class="frame-div">
           <img class="shopping-cart-icon3" alt="" src="/shoppingcart2.svg" />
         </div>
         <div class="cart3">Cart</div>
-      </button>
+      </router-link>
       <button class="cartbutton4" v-if="isLogin" @click="onLogOutClick">
         <div class="frame-div">
         </div>

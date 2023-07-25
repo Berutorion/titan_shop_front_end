@@ -3,19 +3,19 @@
   import Navigation1 from "../components/Navigation1.vue";
   import Footers from "../components/Footers.vue";
   import productAPI from "../api/product";
-  import { useRoute, useRouter } from "vue-router";
+  import cartAPI from "../api/cart";
+  import Alert from "../helpers/Alerts";
+  import { useRoute } from "vue-router";
+  import auth from "../helpers/auth";
+  import format from "../helpers/format";
+  import router from "../main";
   const route = useRoute();
   const productId = ref(route.params.id);
   const product = ref({});
-  const role = ref(localStorage.getItem("userRole"));
-  const isBuyer = ref(false);
+  const isSeller = ref(auth.isSeller());
   
   onMounted(async () => {
-    if (role.value === "buyer") {
-      isBuyer.value = true;
-    }
     try {
-      console.log("prodcutID", productId.value);
     const response = await productAPI.getProductById(productId.value);
     product.value = response;
     console.log(response);
@@ -25,10 +25,20 @@
     
   });
 
-  function priceFormat(price) {
-    return price?.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  async function addToCart() {
+    if(auth.isLogin()) {
+      try {
+       const res = await cartAPI.addToCart(productId.value,1);
+      Alert.toast(res.message, "success", "top-end");
+      } catch (error) {
+      Alert.toast(error.message, "error", "top-end");
+      }
+    } else {
+      Alert.toast("請先登入", "error", "top-end");
+      router.push({ name: "LoginPage" });
+    }
   }
-
+ 
 
 </script>
 <template>
@@ -41,7 +51,7 @@
       <div class="detailcontainer">
         <div class="detail">
           <div class="havic-hv-g-92">{{ product?.name }}</div>
-          <div class="div13">{{"$ " + priceFormat(product?.price)}}</div>
+          <div class="div13">{{"$ " + format.priceFormat(product?.price)}}</div>
           <div class="playstation-5-controller">
             {{ product?.description  }}
           </div>
@@ -59,7 +69,7 @@
               <img class="maths-minus-m2" alt="" src="/maths--plus-m1.svg" />
             </button>
           </div>
-          <div class="button" v-if="isBuyer">
+          <div class="button" v-if="!isSeller" @click="addToCart">
             <button class="button-base3">
               <div class="text5">Add to Cart</div>
             </button>

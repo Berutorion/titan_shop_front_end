@@ -8,6 +8,7 @@ import ProductDetailPage from "./pages/ProductDetailPage.vue";
 import AddNewProductPage from "./pages/AddNewProductPage.vue";
 import EditProductPage from "./pages/EditProductPage.vue";
 import MainPage from "./pages/MainPage.vue";
+import CartPage from "./pages/CartPage.vue";
 import "./global.css";
 
 const routes = [
@@ -15,6 +16,11 @@ const routes = [
     path: "/login",
     name: "LoginPage",
     component: LoginPage,
+  },
+  {
+    path: "/cart",
+    name: "CartPage",
+    component: CartPage,
   },
   {
     path: "/productManagement",

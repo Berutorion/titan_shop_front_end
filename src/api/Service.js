@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Alerts from '../helpers/Alerts'
 
 export  async function call  (method, endpoint, data) {
    try {
@@ -11,8 +12,6 @@ export  async function call  (method, endpoint, data) {
     // base url
     const baseURL = import.meta.env.VITE_API_URL;
 
-
-
     const response = await axios({
         headers,
         baseURL,
@@ -20,10 +19,14 @@ export  async function call  (method, endpoint, data) {
         url:endpoint,
         data
     });
-    console.log(response);
     return response.data;
    } catch (error) {
-    console.log(error);
+      if(!error.response){
+        throw new Error('Network Error');
+      }else{
+        console.log("Error" , error)
+        throw new Error(error.response.data?.message?error.response.data.message:error.response.statusText);
+      }
    }
     };
 
