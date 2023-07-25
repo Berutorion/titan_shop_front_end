@@ -46,7 +46,7 @@
     <Navigation1 />
     <div class="product-detail">
       <div class="imagecontainer">
-        <img class="image-63-icon" alt="" src="/image-63@2x.png" />
+        <img class="image-63-icon" alt="" src="/deafault.png" />
       </div>
       <div class="detailcontainer">
         <div class="detail">

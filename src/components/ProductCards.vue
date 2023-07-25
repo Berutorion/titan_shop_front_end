@@ -8,7 +8,7 @@
   const containerCursor = ref("pointer");
   const props = defineProps({
     productName: { type: String , default: "Product Name"},
-    productImage: { type: String, default: "/produuctimage1@2x.png"},
+    productImage: { type: String, default: "/deafault.png"},
     productPrice: { type: String, default: "0" },
     productId: { type: Number, default: "0" },
   });
@@ -63,8 +63,8 @@
   }
   .productImage-icon1 {
     position: relative;
-    width: 70%;
-    height: 50%;
+    width: 200px;
+    height: 10%;
     object-fit: cover;
   }
   .productprice5 {

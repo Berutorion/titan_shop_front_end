@@ -9,7 +9,7 @@ const props = defineProps({
   productPrice: {Number, default: 0},
   quantity: {Number, default: 1},
   stock: {Number, default: 0},
-  productImage: {String, default: "/image-63@2x.png"},
+  productImage: {String, default: "/deafault.png"},
 });
 const quantity = ref(props.quantity);
 const totalPrice = ref(props.productPrice * props.quantity);
