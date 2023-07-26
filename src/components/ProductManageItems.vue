@@ -5,7 +5,7 @@
 import router from "../main";
   const props = defineProps({
     id: { type: Number, default: 0 },
-    productImage: { type: String, default: "/deafault.png" },
+    productImage: { type: String, default: "/titan_shop_front_end/deafault.png" },
     productionName: { type: String, default: "production name" },
     productPrice: { type: String, default: "$0" },
     productAmout: { type: Number, default: 0 },

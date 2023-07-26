@@ -9,7 +9,7 @@ const props = defineProps({
   productPrice: {Number, default: 0},
   quantity: {Number, default: 1},
   stock: {Number, default: 0},
-  productImage: {String, default: "/deafault.png"},
+  productImage: {String, default: "/titan_shop_front_end/deafault.png"},
 });
 const quantity = ref(props.quantity);
 const totalPrice = ref(props.productPrice * props.quantity);

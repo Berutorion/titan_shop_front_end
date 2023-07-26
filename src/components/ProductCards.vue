@@ -8,7 +8,7 @@
   const containerCursor = ref("pointer");
   const props = defineProps({
     productName: { type: String , default: "Product Name"},
-    productImage: { type: String, default: "/deafault.png"},
+    productImage: { type: String, default: "/titan_shop_front_end/deafault.png"},
     productPrice: { type: String, default: "0" },
     productId: { type: Number, default: "0" },
   });

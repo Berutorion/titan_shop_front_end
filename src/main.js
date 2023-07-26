@@ -22,11 +22,19 @@ const routes = [
     path: "/cart",
     name: "CartPage",
     component: CartPage,
+    addMetaTag: true,
+    meta: {
+      requiresAuth: true,
+    }
   },
   {
     path: "/purchaseSuccess/:orderId",
     name: "PurchaseSuccessPage",
     component: PurchaseSuccessPage,
+    addMetaTag: true,
+    meta: {
+      requiresAuth: true,
+    }
   },
   {
     path: "/productManagement",
@@ -46,11 +54,19 @@ const routes = [
     path: "/editProduct/:id",
     name: "EditProductPage",
     component: EditProductPage,
+    addMetaTag: true,
+    meta: {
+      requiresAuth: true,
+    }
   },
   {
     path: "/productDetail/:id",
     name: "ProductDetailPage",
     component: ProductDetailPage,
+    addMetaTag: true,
+    meta: {
+      requiresAuth: true,
+    }
   },
   {
     path: "/",
