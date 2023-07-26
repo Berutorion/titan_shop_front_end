@@ -1,5 +1,5 @@
 import { createApp } from "vue";
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHashHistory } from "vue-router";
 import App from "./App.vue";
 
 import LoginPage from "./pages/LoginPage.vue";
@@ -9,6 +9,7 @@ import AddNewProductPage from "./pages/AddNewProductPage.vue";
 import EditProductPage from "./pages/EditProductPage.vue";
 import MainPage from "./pages/MainPage.vue";
 import CartPage from "./pages/CartPage.vue";
+import PurchaseSuccessPage from "./pages/PurchaseSuccessPage.vue";
 import "./global.css";
 
 const routes = [
@@ -21,6 +22,11 @@ const routes = [
     path: "/cart",
     name: "CartPage",
     component: CartPage,
+  },
+  {
+    path: "/purchaseSuccess/:orderId",
+    name: "PurchaseSuccessPage",
+    component: PurchaseSuccessPage,
   },
   {
     path: "/productManagement",
@@ -58,7 +64,7 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes,
 });
 

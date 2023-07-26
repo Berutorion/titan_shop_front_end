@@ -33,6 +33,10 @@ const product = {
     updateProduct: async (id, data) => {
         const response = await Service.API.call('put', `/product/${id}`, data);
         return response;
+    },
+    searchProduct: async (data) => {
+        const response = await Service.API.call('post', '/product/search', data);
+        return response;
     }
 }
 

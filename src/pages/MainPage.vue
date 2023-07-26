@@ -1,6 +1,6 @@
 
 <script setup>
-  import { ref , onMounted} from "vue";
+  import { ref , onMounted, computed} from "vue";
   import ProductCards from "../components/ProductCards.vue";
   import Pagination from "../components/Pagination.vue";
   import Footers from "../components/Footers.vue";
@@ -8,6 +8,7 @@
   import Navigation1 from "../components/Navigation1.vue";
 
   const productList = ref([]);
+
   onMounted(async () => {
     try {
       const response = await productAPI.getProducts();
@@ -15,13 +16,28 @@
     } catch (error) {
       console.log(error);
     }
-   
   });
+
+  async function onSearchClick(searchInput,minPrice,maxPrice) {
+    if (searchInput === "") {
+      try {
+        productList.value = await productAPI.getProducts();
+      } catch (error) {
+        console.log(error);
+      }
+      return;
+    }
+    try {
+      productList.value = await productAPI.searchProduct({name:searchInput,minPrice: minPrice,maxPrice: maxPrice});
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
 </script>
 <template>
   <div class="mainpage">
-     <Navigation1/>
+     <Navigation1 :onSearchClick="onSearchClick"/>
     <div class="productContainer">
       <ProductCards
         v-for="product in productList"
@@ -31,7 +47,8 @@
         :productPrice= "product.price"
       />
     </div>
-    <Pagination /><Footers />
+    <!-- <Pagination /> -->
+    <Footers />
   </div>
 </template>
 

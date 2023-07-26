@@ -20,7 +20,8 @@ const cart = {
         return response;
     },
     purchase: async () => {
-        const response = await Service.API.call('post', '/cart/purchase');
+        const userId = localStorage.getItem('userId');
+        const response = await Service.API.call('post', '/cart/purchase/', {userId});
         return response;
     },
     getTotalPrice: async () => {

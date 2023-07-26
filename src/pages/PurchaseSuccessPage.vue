@@ -1,31 +1,27 @@
+<script setup>
+import { onMounted, ref } from "vue";
+import Navigation1 from "../components/Navigation1.vue";
+import Footers from "../components/Footers.vue";
+import { useRoute } from "vue-router";
+import orderAPI from "../api/order";
+import format from "../helpers/format";
+const route = useRoute();
+const order = ref({});
+
+onMounted (async () => {
+  try {
+    const response = await orderAPI.getOrder(route.params.orderId);
+    order.value = response;
+    console.log(order.value);
+  } catch (error) {
+    console.log(error);
+  }
+})
+
+</script>
 <template>
     <div class="purchase-success-page">
-      <div class="navigation">
-        <div class="logo">
-          <div class="logo-child" />
-          <img class="logo-item" alt="" src="/vector-1.svg" />
-          <div class="storepk">store.pk</div>
-          <div class="logo-child" />
-          <div class="logo-child" />
-        </div>
-        <div class="input-field">
-          <div class="input-field-base">
-            <div class="input-labels">
-              <div class="typed">Search</div>
-            </div>
-            <img class="right-icon" alt="" src="/right-icon.svg" />
-          </div>
-        </div>
-        <div class="buttongroup">
-          <img class="right-icon" alt="" src="/userbutton.svg" />
-          <div class="cartbutton">
-            <div class="shopping-cart-wrapper">
-              <img class="right-icon" alt="" src="/shoppingcart.svg" />
-            </div>
-            <div class="cart">Cart</div>
-          </div>
-        </div>
-      </div>
+      <Navigation1 />
       <div class="receipt">
         <div class="receipt-card">
           <div class="header-text">
@@ -37,17 +33,17 @@
           <div class="line" />
           <div class="amount">
             <div class="total-payment">Total Payment</div>
-            <div class="idr-1000000">IDR 1,000,000</div>
+            <div class="idr-1000000">{{format.priceFormat(order.totalPrice)  }}</div>
           </div>
           <div class="payment-details">
             <div class="row-1">
               <div class="payment-detail">
                 <div class="ref-number">Ref Number</div>
-                <div class="div">000085752257</div>
+                <div class="div">{{ order.id }}</div>
               </div>
               <div class="payment-detail">
                 <div class="ref-number">Payment Time</div>
-                <div class="div">25 Feb 2023, 13:22</div>
+                <div class="div">{{ format.dateFormat(order.createdAt) }}</div>
               </div>
             </div>
             <div class="row-2">
@@ -61,28 +57,19 @@
               </div>
             </div>
           </div>
-          <img class="success-icon" alt="" src="/success-icon.svg" />
+          <img class="success-icon" alt="" src="/success-Icon.png" />
         </div>
-      </div>
-      <button class="button">
+        <router-link :to="{name: 'MainPage'}" class="button" >
         <div class="button-base">
           <div class="text">go to Home page</div>
         </div>
-      </button>
-      <div class="footer">
-        <div class="stratus99-e-commerce-inc">
-          © 2021 Winstore. All Rights Reserved.
-        </div>
+      </router-link>
       </div>
+     
+    <Footers />
     </div>
   </template>
-  <script>
-    import { defineComponent, ref } from "vue";
-  
-    export default defineComponent({
-      name: "PurchaseSuccessPage",
-    });
-  </script>
+ 
   <style scoped>
     .logo-child {
       position: relative;
@@ -322,6 +309,8 @@
     }
     .receipt {
       width: 345px;
+      flex:1;
+      margin-top: 25px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -329,6 +318,7 @@
       font-size: 20px;
       color: #121212;
       font-family: Poppins;
+      background-image: -moz-element(#receipt);
     }
     .text {
       position: relative;
@@ -379,8 +369,8 @@
       font-size: 18px;
     }
     .purchase-success-page {
-      position: relative;
       background-color: #fff;
+      height: 100vh;
       width: 100%;
       overflow: hidden;
       display: flex;

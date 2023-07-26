@@ -5,6 +5,7 @@
   import CartItem from '../components/CartItem.vue';
   import cartAPI from '../api/cart';
   import format from '../helpers/format';
+import router from '../main';
 
   const cartList = ref([]);
   const total = ref(0);
@@ -20,6 +21,16 @@
       console.log(error);
     }
   })
+
+ async function onPurchase() {
+    try {
+      const response = await cartAPI.purchase();
+      router.push({name: 'PurchaseSuccessPage', params: {orderId: response.orderId}})
+    } catch (error) {
+      console.log(error);
+    }
+   
+  }
 </script>
 <template>
   <div class="cart-page">
@@ -58,11 +69,11 @@
                       <div class="typed">{{" " + format.priceFormat(total) }}</div>
                   </div>
               </div>
-              <div class="button">
+              <button class="button" @click="onPurchase">
                   <div class="button-base">
                       <div class="text">Purchase</div>
                   </div>
-              </div>
+              </button>
           </div>
       </div>
       <Footers />
@@ -123,6 +134,7 @@
     position: relative;
     line-height: 20px;
     font-weight: 600;
+    color: #fff;
 }
 .button-base {
     border-radius: 8px;
@@ -137,15 +149,15 @@
     justify-content: center;
 }
 .button {
-    border-radius: 8px;
-    width: 110px;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: flex-start;
-    font-size: 14px;
-    color: #fff;
-    font-family: Inter;
+    cursor: pointer;
+      border: none;
+      padding: 0;
+      background-color: transparent;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: flex-start;
 }
 .totalcard {
     border: 1px solid #000;

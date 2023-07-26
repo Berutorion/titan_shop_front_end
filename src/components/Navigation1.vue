@@ -1,11 +1,13 @@
 <script setup>
-  import { defineComponent, ref } from "vue";
+  import { defineProps, ref } from "vue";
   import router from "../main";
   import auth from "../helpers/auth";
   import Alert from "../helpers/Alerts";
-
+  import productAPI from "../api/product";
+  const props = defineProps({
+    onSearchClick: Function,
+  });
   const isSeller = ref(auth.isSeller());
-  const isBuyer = ref(auth.isBuyer());
   const isLogin = ref(auth.isLogin());
   const isMainPage = ref(router.currentRoute.value.name === "MainPage");
   function onLogoClick() {
@@ -22,11 +24,12 @@
   function onLoginClick() {
     router.push({ name: "LoginPage" });
   }
-
   // search
   const searchInput = ref("");
+  const maxPrice = ref("");
+  const minPrice = ref("");
   function onSearchClick() {
-    console.log("Search", searchInput.value);
+    props.onSearchClick(searchInput.value, minPrice.value, maxPrice.value);
   }
 </script>
 <template>
@@ -55,6 +58,19 @@
           <img class="vector-icon16" alt="" src="/vector11.svg" />
         </button>
       </div>
+    <div class="priceFilter">
+      <span style="color: aliceblue;">價格範圍: </span>
+      <input
+     placeholder="0"
+     v-model="minPrice"
+     />
+     <span style="color: aliceblue;"> ~ </span>
+     <input
+     placeholder="1000"
+      v-model="maxPrice"
+     />
+    </div>
+    
     </div>
     <div class="buttongroup4">
       <router-link :to="{name: 'ProductManagementPage'}" class="userbutton2" v-if="isSeller" >
@@ -84,6 +100,9 @@
 </template>
 
 <style scoped>
+.priceFilter {
+  width: 100%;
+}
   .logo-child13 {
     position: relative;
     border-radius: 50%;

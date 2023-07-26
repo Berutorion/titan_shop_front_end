@@ -4,6 +4,7 @@ import { fileURLToPath, URL } from "node:url";
     
     // https://vitejs.dev/config/
     export default defineConfig({
+      base: "/titan_shop_front_end/",
       plugins: [vue()],
       resolve: {
         alias: {

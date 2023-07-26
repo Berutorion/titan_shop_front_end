@@ -10,7 +10,7 @@ export  async function call  (method, endpoint, data) {
         Authorization: `Bearer ${token}`
     };
     // base url
-    const baseURL = import.meta.env.VITE_API_URL;
+    const baseURL = import.meta.env.VITE_API_URL + "/api";
 
     const response = await axios({
         headers,
